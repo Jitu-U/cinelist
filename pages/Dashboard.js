@@ -4,13 +4,25 @@ import { doc, getDoc, getFirestore } from 'firebase/firestore';
 import React from 'react'
 import app from './firebase/clientApp';
 import { useEffect,useState } from 'react';
+import {IoIosSearch} from 'react-icons/io'
 
 
 const Search = () => {
     const [searchField,setSearchField] = useState('');
+    const apiKey = "3a92606e";
 
-    async function handleSearch(){
+    
+    async function handleSearch(event){
         
+            const url = `http://www.omdbapi.com/?s=${searchField}&apikey=${apiKey}`
+            const res = await fetch(url);
+            const data = await res.json();
+    
+            if(data){
+                console.log(data);
+            }
+        
+       
     }
 
     return(
@@ -21,7 +33,8 @@ const Search = () => {
                placeholder='Search for movie'
                value={searchField}
                onChange={(e)=>{ setSearchField(e.target.value)}}
-               onKeyPress={handleSearch}></input>
+               ></input>
+               <div className={style.searchButton} onClick={handleSearch}><IoIosSearch style={{color:'white'}} size={25}/> </div>
            </div>
         </>
     )
@@ -46,7 +59,7 @@ export default function Dashboard() {
         }
     }, [])
     return (
-        <div>
+        <div className={style.Dashboard}>
             <Search/>
         </div>
     )

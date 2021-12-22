@@ -34,3 +34,5 @@ yarn-error.log*
 .vercel
 
 apiKey.js
+pages/firebase
+pages/firebase/clientApp.js
