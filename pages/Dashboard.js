@@ -5,11 +5,12 @@ import React from 'react'
 import app from './firebase/clientApp';
 import { useEffect,useState } from 'react';
 import {IoIosSearch} from 'react-icons/io'
+import { apiKey } from './firebase/clientApp';
 
 
 const Search = () => {
     const [searchField,setSearchField] = useState('');
-    const apiKey = "3a92606e";
+    
 
     
     async function handleSearch(event){
